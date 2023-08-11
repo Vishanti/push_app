@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "329627747387",
+    "project_id": "flutter-projects-2dc55",
+    "storage_bucket": "flutter-projects-2dc55.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:329627747387:android:af26a1150df2e592a9081e",
+        "android_client_info": {
+          "package_name": "com.vishanti.push_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "329627747387-qk3uucrn2tklb3lft5b5krpcn9s3dden.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9g1LvzER3dsWab3eGfePD_1SaRjUls90"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "329627747387-qk3uucrn2tklb3lft5b5krpcn9s3dden.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
