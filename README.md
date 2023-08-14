@@ -11,6 +11,7 @@ Flutter project.
     - firebase_messaging
     - flutter_bloc
     - go_router
+    - flutter_local_notifications
 
 ## Android
 
@@ -18,7 +19,7 @@ Flutter project.
 
 ## Ios
 
-    - In progress
+    - OK
 
 ## Helper Commands
 

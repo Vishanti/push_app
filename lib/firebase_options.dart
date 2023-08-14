@@ -59,11 +59,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyDSl4NsiLu2MZkmjHIYvZHNFc2n4xYBpVs',
-    appId: '1:329627747387:ios:295c96363ee42e88a9081e',
+    appId: '1:329627747387:ios:73bc99ac413940a6a9081e',
     messagingSenderId: '329627747387',
     projectId: 'flutter-projects-2dc55',
     storageBucket: 'flutter-projects-2dc55.appspot.com',
-    iosClientId: '329627747387-80fpbf33u3dnhs6bdvhlntc55v1a9c6u.apps.googleusercontent.com',
-    iosBundleId: 'com.example.pushApp.RunnerTests',
+    iosClientId: '329627747387-o2qfj029jrl64g2msu34k6p6muvdbr27.apps.googleusercontent.com',
+    iosBundleId: 'com.vishanti.push-app',
   );
 }

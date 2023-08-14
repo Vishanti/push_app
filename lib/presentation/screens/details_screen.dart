@@ -26,7 +26,7 @@ class DetailsScreen extends StatelessWidget {
 
 class _DetailsView extends StatelessWidget {
   final PushMessage message;
-  const _DetailsView({super.key, required this.message});
+  const _DetailsView({required this.message});
 
   @override
   Widget build(BuildContext context) {

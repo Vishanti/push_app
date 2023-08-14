@@ -29,6 +29,13 @@
             {
               "client_id": "329627747387-qk3uucrn2tklb3lft5b5krpcn9s3dden.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "329627747387-80fpbf33u3dnhs6bdvhlntc55v1a9c6u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.vishanti.push-app"
+              }
             }
           ]
         }
