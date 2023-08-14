@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:push_app/config/local_notifications/local_notifications.dart';
 import 'package:push_app/domain/entities/push_message.dart';
 import 'package:push_app/firebase_options.dart';
 
@@ -18,13 +19,21 @@ Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 }
 
 class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
+  int pushMessageId = 0;
   FirebaseMessaging messaging = FirebaseMessaging.instance;
+  final Future<void> Function()? requestLocalNotificationsPermissions;
+  final void Function({
+    required int id,
+    String? title,
+    String? body,
+    String? data,
+  })? showLocalNotification;
 
-  NotificationsBloc() : super(const NotificationsState()) {
+  NotificationsBloc(
+      {this.requestLocalNotificationsPermissions, this.showLocalNotification})
+      : super(const NotificationsState()) {
     on<NotificationsStatusChanged>(_notificationStatusChanged);
     on<NotificationsReceived>(_onPushMessageReceived);
-
-    // TODO: Crear el listener
 
     // Verificar estado de las notificaciones
     _initialStatusCheck();
@@ -75,6 +84,7 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
 
     if (message.notification != null) {
       print('Message also contained a notification: ${message.notification}');
+
       final notification = PushMessage(
           messageId:
               message.messageId?.replaceAll(':', '').replaceAll('%', '') ?? '',
@@ -85,6 +95,14 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
           imageUrl: Platform.isAndroid
               ? message.notification!.android?.imageUrl
               : message.notification!.apple?.imageUrl);
+
+      if (showLocalNotification != null) {
+        showLocalNotification!(
+            id: ++pushMessageId,
+            body: notification.body,
+            data: notification.messageId,
+            title: notification.title);
+      }
 
       add(NotificationsReceived(notification));
     }
@@ -104,7 +122,15 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
       provisional: false,
       sound: true,
     );
+
+    // Solicitar permiso a la "Local Notifications"
+    if (requestLocalNotificationsPermissions != null) {
+      await requestLocalNotificationsPermissions!();
+      // await LocalNotifications.requestPermissionLocalNotifications();
+    }
+
     add(NotificationsStatusChanged(settings.authorizationStatus));
+
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
       print('User granted permission');
     } else if (settings.authorizationStatus ==
